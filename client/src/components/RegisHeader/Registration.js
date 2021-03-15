@@ -83,6 +83,7 @@ function Registration({handleNext,handleBack}) {
     const classes = useStyles();
     const [currency, setCurrency] = React.useState();
     const [gender, setGender] = React.useState();
+    const form = 'Registration'
     
 
     const handleCurrencyChange = (event) => {
@@ -110,51 +111,20 @@ function Registration({handleNext,handleBack}) {
         const handleDateChange = (date) => {
           setSelectedDate(date);
         };
-        const [Header, setHeader] = useState({
-            MRNo: "",
-            TokenNo: "",
-            RegistrationDate: new Date(),
-            Name: "",
-            Father: "",
-            DOB: new Date(),
-            Age: "",
-            Gender: "",
-            Religion: "",
-            District: "",
-            City: "",
-            Area: "",
-            HousNo: "",
-            Address: "",
-            CNIC: "",
-            Phone: "",
-            OffPhone: "",
-            Mobile: "",
-            RefBy: "",
-            Remarks: "",
-            IsRejected: false,
-            IsZakat: "",
-            IsPAFEmp: false,
-            MonthlyConsLimit: 0,
-            ThumbImage: "",
-            NOY: "",
-            EmpID: "",
-            IsStaff: false,
-            CreateUser: "",
-            ModifyUser: "",
-            CreateDate: "",
-            ModifyDate: ""
-        });
        
-        const handleSave = () =>{
-        
-            
+       
+        const handleSave = (e) =>{
+          e.preventDefualt(e);
+       
         }
+            
+        
         const handleChange = (e) => { 
           e.preventDefualt();
           const name = e.target.name; 
         
         setHeader({ 
-              ...Header,   // Spread Operator                
+              ...Header,                  
               [name]: e.target.value 
              
           }) 
@@ -165,11 +135,9 @@ function Registration({handleNext,handleBack}) {
     
             <Grid container>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
-                    <ButtonAppBar handleNext={handleNext} handleBack={handleBack}/>
-                    <h2>
-                        Registration Form
-                    </h2>
-
+                    <ButtonAppBar handleNext={handleNext} handleBack={handleBack}
+                    form={form}
+                    />
                 </Grid>
                 <form className={classes.root} noValidate autoComplete="on" onSubmit={handleSave}>
 
@@ -183,7 +151,7 @@ function Registration({handleNext,handleBack}) {
                       label="M.R #" 
                         variant="outlined"
                         size="small"
-                        onChange={(e)=>setHeader({...Header,MRNo:e.target.value})}
+                        // onChange={(e)=>setHeader({...Header,MRNo:e.target.value})}
                       />
                       </div>
                     </Grid>
@@ -257,7 +225,7 @@ function Registration({handleNext,handleBack}) {
                         size="small"
                       />
                       </div>
-                    </Grid>w
+                    </Grid>
                    
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                     <div>

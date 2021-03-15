@@ -36,6 +36,40 @@ export default function MyStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const steps = getSteps();
+  const [Header, setHeader] = useState({
+    MRNo: "",
+    TokenNo: "",
+    RegistrationDate: new Date(),
+    Name: "",
+    Father: "",
+    DOB: new Date(),
+    Age: "",
+    Gender: "",
+    Religion: "",
+    District: "",
+    City: "",
+    Area: "",
+    HousNo: "",
+    Address: "",
+    CNIC: "",
+    Phone: "",
+    OffPhone: "",
+    Mobile: "",
+    RefBy: "",
+    Remarks: "",
+    IsRejected: false,
+    IsZakat: "",
+    IsPAFEmp: false,
+    MonthlyConsLimit: 0,
+    ThumbImage: "",
+    NOY: "",
+    EmpID: "",
+    IsStaff: false,
+    CreateUser: "",
+    ModifyUser: "",
+    CreateDate: "",
+    ModifyDate: ""
+});
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -47,7 +81,11 @@ export default function MyStepper() {
   const getStepContent=(step) =>{
     switch (step) {
       case 0:
-        return <Registration handleNext={handleNext} handleBack={handleBack}/>;
+        return <Registration handleNext={handleNext}
+         handleBack={handleBack}
+          Header={Header}
+          
+          />
       case 1:
         return <Welfare handleNext={handleNext} handleBack={handleBack}/>;
       case 2:

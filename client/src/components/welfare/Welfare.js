@@ -19,6 +19,8 @@ import WelTable from './WelTable';
 
 function StyledCheckbox(props) {
     const classes = useStyles();
+    const form = 'Welfare'
+
   
     return (
       <Checkbox
@@ -73,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 const Welfare = ({handleNext, handleBack}) => {
 
     const classes = useStyles();
+    const form = 'Welfare';
     const [currency, setCurrency] = React.useState('vlue1');
 
     const handleChange = (event) => {
@@ -139,14 +142,14 @@ const Welfare = ({handleNext, handleBack}) => {
         });
     return (
         <div>
-            <ButtonAppBar handleNext={handleNext} handleBack={handleBack}/>
+            <ButtonAppBar handleNext={handleNext} handleBack={handleBack}
+           form={form}                        
+           />
             
             <Grid container>
                 <Grid item lg={12} md={12} sm={12} xs={12}>
                     {/* <ButtonAppBar handleNext={handleNext} handleBack={handleBack}/> */}
-                    <h2>
-                        Welfare Form
-                    </h2>
+           
 
                 </Grid>
                 <form className={classes.root} noValidate autoComplete="on">

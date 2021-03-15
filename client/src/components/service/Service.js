@@ -48,6 +48,8 @@ const useStyles = makeStyles((theme) => ({
   }));
 const Service = ({handleNext, handleBack}) => {
     const classes = useStyles();
+    const form = 'Service'
+
     const [Header, setHeader] = useState({
           MRNo:"MR-0000000015",
           TokenNo:"14",
@@ -76,11 +78,10 @@ const Service = ({handleNext, handleBack}) => {
         <div>
           {/* <Button> */}
 
-            <ButtonAppBar handleNext={handleNext} handleBack={handleBack}/>
+            <ButtonAppBar handleNext={handleNext} handleBack={handleBack}
+             form={form}
+             />                               
             {/* </Button> */}
-           <div>
-               <h2> SERVICE</h2>
-           </div>
            <div>
            <Grid component="section" container>
            <Grid item lg={8} md={6} sm={12} xs={12} className={classes.div}>

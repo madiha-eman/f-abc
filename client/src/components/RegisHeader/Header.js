@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar({handleNext , handleBack}) {
+export default function ButtonAppBar({handleNext , handleBack, form}) {
   const classes = useStyles();
 
   return (
@@ -36,7 +36,7 @@ export default function ButtonAppBar({handleNext , handleBack}) {
           <Icon icon={ic_arrow_back} className='icon-back' onClick={handleBack}/>
           </Button>
           <Typography  variant="h4" className={classes.title}>
-              
+              {form}
           </Typography>
         <Button color="inherit">
                    <Icon icon={ic_arrow_forward} className='icon-far'  onClick={handleNext} />

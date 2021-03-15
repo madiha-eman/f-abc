@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userRegis = mongoose.Schema({
+const patRegis = mongoose.Schema({
     mrNO: {
         type: String,
         required: [true, ""]
@@ -39,6 +39,14 @@ const userRegis = mongoose.Schema({
         required: [true, "help type is required"]
     },
     cnic: {
+        type: Number,
+        required: [true, "CNIC is required"]
+    },
+    cnic: {
+        type: String,
+        required: [true, "CNIC is required"]
+    },
+    cnic: {
         type: String,
         required: [true, "CNIC is required"]
     },
@@ -62,5 +70,5 @@ const userRegis = mongoose.Schema({
     
 })
 
-const User = mongoose.model('User', userSchema)
-module.exports = User
+const Register = mongoose.model('Register', patRegisSchema)
+module.exports = Register
