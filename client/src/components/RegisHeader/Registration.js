@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-function Registration({handleNext,handleBack}) {
+function Registration({handleNext,handleBack,Header,setHeader}) {
     const classes = useStyles();
     const [currency, setCurrency] = React.useState();
     const [gender, setGender] = React.useState();
@@ -95,15 +95,15 @@ function Registration({handleNext,handleBack}) {
       };
 
     const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-        checkedF: true,
-        checkedG: true,
+        // checkedA: true,
+        // checkedB: true,
+        // checkedF: true,
+        // checkedG: true,
       });
     
-      const handleChangecheck = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-      }
+      // const handleChangecheck = (event) => {
+      //   setState({ ...state, [event.target.name]: event.target.checked });
+      // }
   
         // The first commit of Material-UI
         const [selectedDate, setSelectedDate] = React.useState(new Date('2021-08-4'));
@@ -119,13 +119,12 @@ function Registration({handleNext,handleBack}) {
         }
             
         
-        const handleChange = (e) => { 
-          e.preventDefualt();
-          const name = e.target.name; 
+        const handleChange = (event) => { 
+          const name = event.target.name; 
         
-        setHeader({ 
-              ...Header,                  
-              [name]: e.target.value 
+        setState({ 
+              ...state,                  
+              [name]: event.target.value 
              
           }) 
         }
@@ -199,7 +198,8 @@ function Registration({handleNext,handleBack}) {
                     <div>
                       <TextField
                       value={Header.Name}
-                      onChange={(e)=>setHeader({...Header,Name:e.target.value})}
+                      onChange={(e)=>setHeader({...Header,
+                        Name:e.target.value})}
                       //   label="Size"
                       id="outlined-basic"
                       label="Name" 
@@ -547,8 +547,8 @@ function Registration({handleNext,handleBack}) {
                     <FormControlLabel
                         control={
                           <Checkbox
-                            checked={state.checkedB}
-                            onChange={handleChangecheck}
+                            // checked={state.checkedB}
+                            // onChange={handleChangecheck}
                             name="checkedB"
                             color="primary"
                           />
@@ -561,8 +561,8 @@ function Registration({handleNext,handleBack}) {
                     <FormControlLabel
                         control={
                           <Checkbox
-                            checked={state.checkedB}
-                            onChange={handleChangecheck}
+                            // checked={state.checkedB}
+                            // onChange={handleChangecheck}
                             name="checkedB"
                             color="primary"
                           />
@@ -574,8 +574,8 @@ function Registration({handleNext,handleBack}) {
                   <FormControlLabel
                         control={
                           <Checkbox
-                            checked={state.checkedB}
-                            onChange={handleChangecheck}
+                            // checked={state.checkedB}
+                            // onChange={handleChangecheck}
                             name="checkedB"
                             color="primary"
                           />

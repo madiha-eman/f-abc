@@ -1,5 +1,5 @@
   
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -84,10 +84,12 @@ export default function MyStepper() {
         return <Registration handleNext={handleNext}
          handleBack={handleBack}
           Header={Header}
-          
+          setHeader={setHeader}
           />
       case 1:
-        return <Welfare handleNext={handleNext} handleBack={handleBack}/>;
+        return <Welfare handleNext={handleNext} handleBack={handleBack} 
+        
+        />;
       case 2:
         return <Service handleNext={handleNext} handleBack={handleBack}/>;
       default:

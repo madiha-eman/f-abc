@@ -104,5 +104,5 @@ const RegisSchema = mongoose.Schema({
 
 })
 
-const Register = mongoose.model('Register', RegisSchema)
-module.exports = Register
+const Registeration = mongoose.model('Registeration', RegisSchema)
+module.exports = Registeration
