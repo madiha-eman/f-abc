@@ -61,7 +61,7 @@ export default function MyStepper() {
     IsZakat: "",
     IsPAFEmp: false,
     MonthlyConsLimit: 0,
-    ThumbImage: "",
+    // ThumbImage: "",
     NOY: "",
     EmpID: "",
     IsStaff: false,
@@ -70,6 +70,67 @@ export default function MyStepper() {
     CreateDate: "",
     ModifyDate: ""
 });
+// const [Welfare, setWelfare] = useState({
+          
+//   MRNo:"MR-0000000014",
+//   TokenNo:"14",
+//   WelfareDate:"2021-02-28T13:32:08.986Z",
+//   Profession:"leader",
+//   Fiqa:"sunni",
+//   Education:"bachelors",
+//   Cast:"sidd",
+//   MonthlyIncome:122222,
+//   Guardian:"guradia",
+//   OtherInfo:"other",
+//   MaleKids:0,
+//   FemaleKids:1,
+//   OtherKids:0,
+//   Brothers:0,
+//   Sisters:0,
+//   NoOFFamilyMembers:2,
+//   IsMarried:true,
+//   IsAbleToPay:false,
+//   IsEarning:false,
+//   HaveGold:false,
+//   ReqName:"req",
+//   ReqPhone:"1213 1231231",
+//   ReqRelationWithPatient:"self",
+//   CreateUser:"Admin",
+//   ModifyUser:"Admin",
+
+//   FormName:"Welfare",
+//   Detail:[{"MRNo":"MR-0000000014",
+//   MemberName:"noshan",
+//   RelationWithPatient:"self",
+//   MonthlyIncome:12222,
+//   tableData:{"id":0}},
+//   {
+//   MRNo:"MR-0000000014",
+//   MemberName:"wi",
+//   RelationWithPatient:"wife",
+//   MonthlyIncome:122,
+//   tableData:{"id":1}}]
+  
+// });
+// const [Service, setService] = useState({
+//   MRNo:"MR-0000000015",
+//   TokenNo:"14",
+//   Gender:'',
+//   ServiceDate:"2021-02-28T14:19:32.164Z",
+//   Ward:"Ward# 2",
+//   Amount:1222,
+//   TotalAmount:1222,
+//   PatientContribution:"dd",
+//   Remarks:"dsad",
+//   CreatedUser:"Admin",
+//   ModifyUser:"Admin",
+  
+//   FormName:"Service",
+//   Detail:[{"TestDesc":"thyroid",
+//   TestCode:"001",
+//   TestRate:"1",
+//   tableData:{"id":0}}]
+// } )
 
   const isStepOptional = (step) => {
     return step === 1;
@@ -83,15 +144,19 @@ export default function MyStepper() {
       case 0:
         return <Registration handleNext={handleNext}
          handleBack={handleBack}
-          Header={Header}
-          setHeader={setHeader}
+         Header={Header}
+         setHeader={setHeader}
           />
       case 1:
         return <Welfare handleNext={handleNext} handleBack={handleBack} 
-        
+        // Welfare={Welfare}
+        // setWelfare={setWelfare}
         />;
       case 2:
-        return <Service handleNext={handleNext} handleBack={handleBack}/>;
+        return <Service handleNext={handleNext} handleBack={handleBack}
+        // Service={Service}
+        // setService={setService}
+        />;
       default:
         return 'Unknown step';
     }

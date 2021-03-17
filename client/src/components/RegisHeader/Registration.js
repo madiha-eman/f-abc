@@ -5,11 +5,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import ButtonAppBar from './Header'
+import NumberFormat from 'react-number-format';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers'
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -64,9 +66,6 @@ const genders = [
   
   ];
 
-
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -82,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 function Registration({handleNext,handleBack,Header,setHeader}) {
     const classes = useStyles();
     const [currency, setCurrency] = React.useState();
+    const [err, setError] = useState()
     const [gender, setGender] = React.useState();
     const form = 'Registration'
     
@@ -93,7 +93,6 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
     const handleGenderChange = (event) => {
         setGender(event.traget.value);
       };
-
     const [state, setState] = React.useState({
         // checkedA: true,
         // checkedB: true,
@@ -115,7 +114,11 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
        
         const handleSave = (e) =>{
           e.preventDefualt(e);
-       
+          axios.post('http://localhost:4000/api/register/add', Header)
+          .then(res => {
+            console.log(res.data)
+ })
+          .catch(err=>console.log(err,'error'));
         }
             
         
@@ -128,7 +131,10 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
              
           }) 
         }
-        console.log(Header)
+        // console.log(Header)
+        // let user = {name, email, pwd};
+        // console.log(user)
+       
     return (
         <div>
     
@@ -138,7 +144,7 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                     form={form}
                     />
                 </Grid>
-                <form className={classes.root} noValidate autoComplete="on" onSubmit={handleSave}>
+                <form className={classes.root} autoComplete="on" onSubmit={handleSave}>
 
                 <Grid container direction='row'>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
@@ -148,6 +154,7 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                       //   label="Size"
                       id="outlined-basic"
                       label="M.R #" 
+                     
                         variant="outlined"
                         size="small"
                         // onChange={(e)=>setHeader({...Header,MRNo:e.target.value})}
@@ -156,16 +163,16 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                     <div>
-                      <TextField
-                      //   label="Size"
-                      id="outlined-basic"
+                    <NumberFormat  
+                      format="#### #### #### ####"
+                      mask="_"
                       label="Token #" 
-                        variant="outlined"
-                        size="small"
-                        value={Header.TokenNo}
-                        onChange={(e)=>setHeader({...Header,TokenNo:e.target.value})}
-
-                      />
+                      variant="outlined"
+                      id="outlined-basic"
+                    value={Header.TokenNo}
+                    onChange={(e)=>setHeader({...Header,TokenNo:e.target.value})}
+                    />
+                    
                       </div>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
@@ -257,6 +264,7 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                     <div>
                       <TextField
                       value={Header.Age}
+                      onChange={(e)=>setHeader({...Header,Age:e.target.value})}
                       //   label="Size"
                       id="outlined-basic"
                       label="Age" 

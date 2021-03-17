@@ -46,30 +46,40 @@ const useStyles = makeStyles((theme) => ({
     }
  
   }));
-const Service = ({handleNext, handleBack}) => {
+const Service = ({handleNext, handleBack, 
+  // Service, setService
+}) => {
     const classes = useStyles();
     const form = 'Service'
-
-    const [Header, setHeader] = useState({
-          MRNo:"MR-0000000015",
-          TokenNo:"14",
-          Gender:'',
-          ServiceDate:"2021-02-28T14:19:32.164Z",
-          Ward:"Ward# 2",
-          Amount:1222,
-          TotalAmount:1222,
-          PatientContribution:"dd",
-          Remarks:"dsad",
-          CreatedUser:"Admin",
-          ModifyUser:"Admin",
-          
-          FormName:"Service",
-          Detail:[{"TestDesc":"thyroid",
-          TestCode:"001",
-          TestRate:"1",
-          tableData:{"id":0}}]
-     } )
-
+    const [Service, setService] = useState({
+      MRNo:"MR-0000000015",
+      TokenNo:"14",
+      Gender:'',
+      ServiceDate:"2021-02-28T14:19:32.164Z",
+      Ward:"Ward# 2",
+      Amount:1222,
+      TotalAmount:1222,
+      PatientContribution:"dd",
+      Remarks:"dsad",
+      CreatedUser:"Admin",
+      ModifyUser:"Admin",
+      
+      FormName:"Service",
+      Detail:[{"TestDesc":"thyroid",
+      TestCode:"001",
+      TestRate:"1",
+      tableData:{"id":0}}]
+    } )
+    const handleChange = (event) => { 
+      const name = event.target.name; 
+    
+      setService({ 
+          ...Service,                  
+          [name]: event.target.value 
+         
+      }) 
+    }
+    console.log(Service)
      const handleSave = () =>{
         
             
@@ -94,7 +104,7 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.MRNo}
+                      value={Service.MRNo}
                       id="outlined-basic"
                       label="M.R.#" 
                         variant="outlined"
@@ -107,9 +117,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.TokenNo}
+                      value={Service.TokenNo}
                       id="outlined-basic"
                       label="Token #" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -120,9 +131,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                        className={classes.txtf}
                       //   label="Size"
-                      value={Header.Gender}
+                      value={Service.Gender}
                       id="outlined-basic"
                       label="Gender" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -133,9 +145,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.Date}
+                      value={Service.Date}
                       id="outlined-basic"
                       label="Date" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -150,9 +163,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.Ward}
+                      value={Service.Ward}
                       id="outlined-basic"
                       label="Ward" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -163,9 +177,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.Amount}
+                      value={Service.Amount}
                       id="outlined-basic"
                       label="Amount*" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -176,10 +191,11 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                        className={classes.txtf}
                       //   label="Size"
-                      value={Header.TotalAmount}
+                      value={Service.TotalAmount}
                       id="outlined-basic"
                       label="TotalAmount" 
                         variant="outlined"
+                        onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         size="small"
                       />
                       </div>
@@ -189,9 +205,10 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtf}
                       //   label="Size"
-                      value={Header.PatientContribution}
+                      value={Service.PatientContribution}
                       id="outlined-basic"
                       label="PatientContribution" 
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -204,8 +221,9 @@ const Service = ({handleNext, handleBack}) => {
                       <TextField
                       className={classes.txtfBig}
                       //   label="Size"
-                      value={Header.Remarks}
+                      value={Service.Remarks}
                       id="outlined-basic"
+                      onChange={(e)=>setService({...Service,TokenNo:e.target.value})}
                       label="Remarks" 
                         variant="outlined"
                         size="small"

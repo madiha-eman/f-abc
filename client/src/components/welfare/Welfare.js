@@ -72,25 +72,64 @@ const useStyles = makeStyles((theme) => ({
  
   }));
 
-const Welfare = ({handleNext, handleBack}) => {
+const Welfare = ({handleNext, handleBack, 
+  // Welfare, setWelfare 
+}) => {
 
     const classes = useStyles();
     const form = 'Welfare';
     const [currency, setCurrency] = React.useState('vlue1');
-
-    const handleChange = (event) => {
-      setCurrency(event.target.value);
-    };
-    const [state, setState] = React.useState({
-        checkedA: true,
-        checkedB: true,
-        checkedF: true,
-        checkedG: true,
-      });
+    const [Welfare, setWelfare] = useState({
+          
+      MRNo:"MR-0000000014",
+      TokenNo:"14",
+      WelfareDate:"2021-02-28T13:32:08.986Z",
+      Profession:"leader",
+      Fiqa:"sunni",
+      Education:"bachelors",
+      Cast:"sidd",
+      MonthlyIncome:122222,
+      Guardian:"guradia",
+      OtherInfo:"other",
+      MaleKids:0,
+      FemaleKids:1,
+      OtherKids:0,
+      Brothers:0,
+      Sisters:0,
+      NoOFFamilyMembers:2,
+      IsMarried:true,
+      IsAbleToPay:false,
+      IsEarning:false,
+      HaveGold:false,
+      ReqName:"req",
+      ReqPhone:"1213 1231231",
+      ReqRelationWithPatient:"self",
+      CreateUser:"Admin",
+      ModifyUser:"Admin",
     
-      const handleChangecheck = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-      }
+      FormName:"Welfare",
+      Detail:[{"MRNo":"MR-0000000014",
+      MemberName:"noshan",
+      RelationWithPatient:"self",
+      MonthlyIncome:12222,
+      tableData:{"id":0}},
+      {
+      MRNo:"MR-0000000014",
+      MemberName:"wi",
+      RelationWithPatient:"wife",
+      MonthlyIncome:122,
+      tableData:{"id":1}}]
+      
+    });
+
+    // const handleChange = (event) => {
+    //   setCurrency(event.target.value);
+    // };
+    const [state, setState] = React.useState({});
+    
+      // const handleChangecheck = (event) => {
+      //   setState({ ...state, [event.target.name]: event.target.checked });
+      // }
   
         // The first commit of Material-UI
         const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
@@ -98,48 +137,15 @@ const Welfare = ({handleNext, handleBack}) => {
         const handleDateChange = (date) => {
           setSelectedDate(date);
         };
-        const [Header, setHeader] = useState({
-          
-          MRNo:"MR-0000000014",
-          TokenNo:"14",
-          WelfareDate:"2021-02-28T13:32:08.986Z",
-          Profession:"leader",
-          Fiqa:"sunni",
-          Education:"bachelors",
-          Cast:"sidd",
-          MonthlyIncome:122222,
-          Guardian:"guradia",
-          OtherInfo:"other",
-          MaleKids:0,
-          FemaleKids:1,
-          OtherKids:0,
-          Brothers:0,
-          Sisters:0,
-          NoOFFamilyMembers:2,
-          IsMarried:true,
-          IsAbleToPay:false,
-          IsEarning:false,
-          HaveGold:false,
-          ReqName:"req",
-          ReqPhone:"1213 1231231",
-          ReqRelationWithPatient:"self",
-          CreateUser:"Admin",
-          ModifyUser:"Admin",
-        
-          FormName:"Welfare",
-          Detail:[{"MRNo":"MR-0000000014",
-          MemberName:"noshan",
-          RelationWithPatient:"self",
-          MonthlyIncome:12222,
-          tableData:{"id":0}},
-          {
-          MRNo:"MR-0000000014",
-          MemberName:"wi",
-          RelationWithPatient:"wife",
-          MonthlyIncome:122,
-          tableData:{"id":1}}]
-          
-        });
+        const handleChange = (event) => { 
+          const name = event.target.name; 
+          setWelfare({
+            ...Welfare,                  
+            [name]: event.target.value 
+           
+        })   
+        }
+        console.log(Welfare)
     return (
         <div>
             <ButtonAppBar handleNext={handleNext} handleBack={handleBack}
@@ -158,7 +164,7 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.MRNo}
+                      value={Welfare.MRNo}
                       id="outlined-basic"
                       label="M.R.#" 
                         variant="outlined"
@@ -170,9 +176,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div> 
                     <TextField
                       //   label="Size"
-                      value={Header.Token}
+                      value={Welfare.Token}
                       id="outlined-basic"
                       label="Token #" 
+                      onChange={(e)=>setWelfare({...Welfare,TokenNo:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -183,13 +190,14 @@ const Welfare = ({handleNext, handleBack}) => {
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                    
                          <KeyboardDatePicker
-                           value={Header.WelfareDate}
+                           value={Welfare.WelfareDate}
                             margin="normal"
                             id="date-picker-dialog"
                             label="WelfareDate"
                             format="MM/dd/yyyy"
                             value={selectedDate}
                             onChange={handleDateChange}
+                            onChange={(e)=>setWelfare({...Welfare,WelfareDate:e.target.value})}
                             KeyboardButtonProps={{
                               'aria-label': 'change date',
                             }}
@@ -199,12 +207,16 @@ const Welfare = ({handleNext, handleBack}) => {
                     </Grid>
                     
                     <Grid item lg={1} md={4} sm={12} xs={12}>
-                    <input type='checkbox' id='checkbox' value='Married'/>
+                    <input type='checkbox' id='checkbox' value='Married'
+                    onChange={(e)=>setWelfare({...Welfare,IsMarried:e.target.value})}
+                    />
                     <lable>Zakat</lable>
                        
                     </Grid>
                     <Grid item lg={1} md={4} sm={12} xs={12}>
-                    <input type='checkbox' id='checkbox' value='Married'/>
+                    <input type='checkbox' id='checkbox' value='Married'
+                     onChange={(e)=>setWelfare({...Welfare,TokenNo:e.target.value})}
+                    />
                     <lable>Donation</lable>
                     </Grid>
                     </Grid>
@@ -216,9 +228,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.Profession}
+                      value={Welfare.Profession}
                         id="outlined-basic"
                         label="Fiqa" 
+                        onChange={(e)=>setWelfare({...Welfare,Profession:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -229,9 +242,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.Education}
+                      value={Welfare.Education}
                         id="outlined-basic"
                         label="Fiqa" 
+                        onChange={(e)=>setWelfare({...Welfare,Education:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -241,9 +255,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                       <TextField
                       //   label="Size"
-                        value={Header.Fiqa}
+                        value={Welfare.Fiqa}
                         id="outlined-basic"
                         label="Fiqa" 
+                        onChange={(e)=>setWelfare({...Welfare,Fiqa:e.target.value})}
                         variant="outlined"
                         size="small"
                       />
@@ -253,9 +268,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                       <TextField
                       //   label="Size"
-                      value={Header.Cast}
+                      value={Welfare.Cast}
                       id="outlined-basic"
                       label="Cast" 
+                      onChange={(e)=>setWelfare({...Welfare,Cast:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -273,9 +289,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.ReqName}
+                      value={Welfare.ReqName}
                       id="outlined-basic"
                       label="Requestor Name" 
+                      onChange={(e)=>setWelfare({...Welfare,ReqName:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -285,9 +302,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.ReqRelationWithPatient}
+                      value={Welfare.ReqRelationWithPatient}
                       id="outlined-basic"
                       label="Relation With Patient" 
+                      onChange={(e)=>setWelfare({...Welfare,ReqRelationWithPatient:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -297,8 +315,9 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.MaleKids}
+                      value={Welfare.MaleKids}
                       id="outlined-basic"
+                      onChange={(e)=>setWelfare({...Welfare,MaleKids:e.target.value})}
                       label="No. of Kids(Male)" 
                       variant="outlined"
                       size="small"
@@ -309,10 +328,11 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.FemaleKids}
+                      value={Welfare.FemaleKids}
                       id="outlined-basic"
                       label="No. of Kids(Female)" 
                       variant="outlined"
+                      onChange={(e)=>setWelfare({...Welfare,FemaleKids:e.target.value})}
                       size="small"
                       />
                       </div>
@@ -326,10 +346,11 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.ReqPhone}
+                      value={Welfare.ReqPhone}
                       id="outlined-basic"
                       label="Request Ph #" 
                       variant="outlined"
+                      onChange={(e)=>setWelfare({...Welfare,ReqPhone:e.target.value})}
                       size="small"
                       />
                       </div>
@@ -338,9 +359,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.Guardian}
+                      value={Welfare.Guardian}
                       id="outlined-basic"
                       label="Guardian" 
+                      onChange={(e)=>setWelfare({...Welfare,Guardian:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -350,9 +372,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.OtherKids}
+                      value={Welfare.OtherKids}
                       id="outlined-basic"
                       label="Other Kids" 
+                      onChange={(e)=>setWelfare({...Welfare,OtherKids:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -362,10 +385,11 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.Brothers}
+                      value={Welfare.Brothers}
                       id="outlined-basic"
                       label="No. of Brothers" 
                       variant="outlined"
+                      onChange={(e)=>setWelfare({...Welfare,Brothers:e.target.value})}
                       size="small"
                       />
                       </div>
@@ -376,9 +400,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.MonthlyIncome}
+                      value={Welfare.MonthlyIncome}
                       id="outlined-basic"
                       label="Monthly Income" 
+                      onChange={(e)=>setWelfare({...Welfare,MonthlyIncome:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -388,9 +413,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.OtherInfo}
+                      value={Welfare.OtherInfo}
                       id="outlined-basic"
                       label="Other Info" 
+                      onChange={(e)=>setWelfare({...Welfare,OtherInfo:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -400,9 +426,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.Sisters}
+                      value={Welfare.Sisters}
                       id="outlined-basic"
                       label="No. of Sister" 
+                      onChange={(e)=>setWelfare({...Welfare,Sisters:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -412,9 +439,10 @@ const Welfare = ({handleNext, handleBack}) => {
                     <div>
                     <TextField
                       //   label="Size"
-                      value={Header.NoOFFamilyMembers}
+                      value={Welfare.NoOFFamilyMembers}
                       id="outlined-basic"
                       label="Family Members" 
+                      onChange={(e)=>setWelfare({...Welfare,NoOFFamilyMembers:e.target.value})}
                       variant="outlined"
                       size="small"
                       />
@@ -423,20 +451,28 @@ const Welfare = ({handleNext, handleBack}) => {
                        </Grid>
                        <Grid container direction='row'>
                     <Grid item lg={2} md={4} sm={12} xs={12}>
-                    <input type='checkbox' id='checkbox' value='Married'/>
+                    <input type='checkbox' id='checkbox' value='Married'
+                    onChange={(e)=>setWelfare({...Welfare,IsMarried:e.target.value})}
+                    />
                     <lable>Married</lable>
                     </Grid>
                     <Grid item lg={2} md={4} sm={12} xs={12}>
-                    <input type='checkbox' id='checkbox' value='Have Gold'/>
+                    <input type='checkbox' id='checkbox' value='Have Gold'
+                    onChange={(e)=>setWelfare({...Welfare,HaveGold:e.target.value})}
+                    />
                     <lable>Have Gold</lable>
                   </Grid>
                   <Grid item lg={2} md={4} sm={12} xs={12}>
-                  <input type='checkbox' id='checkbox' value='Is Earning'/>
+                  <input type='checkbox' id='checkbox' value='Is Earning'
+                  onChange={(e)=>setWelfare({...Welfare,IsEarning:e.target.value})}
+                  />
                   <lable>Is Earning</lable>
 
                     </Grid>
                     <Grid item lg={2} md={4} sm={12} xs={12}>
-                <input type='checkbox' id='checkbox' lable='Is Able to Pay'/>
+                <input type='checkbox' id='checkbox' lable='Is Able to Pay'
+                onChange={(e)=>setWelfare({...Welfare,IsAbleToPay:e.target.value})}
+                />
                 <lable>Is Able to Pay</lable>
 
                     </Grid>
