@@ -4,9 +4,9 @@ const RegisSchema = mongoose.Schema({
     MRNo:{
         type: String
     },
-        TokenNo: {
+    TokenNo: {
             type: Number, 
-            // required:[true, "TokenNo is missing"] 
+            required:[true, "TokenNo is missing"] 
         },
         RegistrationDate: {
             type: Date,
@@ -18,6 +18,8 @@ const RegisSchema = mongoose.Schema({
         },
         Father: {
             type: String, 
+            required:[true, "Name is missing"] 
+
         },
         DOB: {
             type: Date,
