@@ -6,13 +6,15 @@ dotenv.config();
 
 
 router.post('/add', async (req,res)=>{
-    console.log('....', req.body)
+    let user = req.body;
+    console.log('....', user);
     try {
-        const register = await Registeration.create(req.body)
+        const register = await Registeration.create(user)
         res.json({
             success: true,
             status: 201,
-            dbid: register._id
+            dbid: register._id,
+            data: register
         })
 
     } catch (error) {

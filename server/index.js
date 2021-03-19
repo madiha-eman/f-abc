@@ -1,12 +1,17 @@
 const express = require('express');
 const path = require('path');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const dbConnect = require('./config/db.js')
 var cors = require('cors')
 const regisRoute  = require('./routes/api/registration.js')
 const dotenv = require('dotenv')
-const app = express();
 dotenv.config();
+
+const app = express();
+
+app.use(cors())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 ///connect to db
 dbConnect();

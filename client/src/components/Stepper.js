@@ -58,7 +58,7 @@ export default function MyStepper() {
     RefBy: "",
     Remarks: "",
     IsRejected: false,
-    IsZakat: "",
+    IsZakat: false,
     IsPAFEmp: false,
     MonthlyConsLimit: 0,
     // ThumbImage: "",

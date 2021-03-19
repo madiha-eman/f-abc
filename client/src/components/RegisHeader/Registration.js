@@ -113,7 +113,7 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
        
        
         const handleSave = (e) =>{
-          e.preventDefualt(e);
+          e.preventDefault(e);
           axios.post('http://localhost:4000/api/register/add', Header)
           .then(res => {
             console.log(res.data)
@@ -157,14 +157,14 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                      
                         variant="outlined"
                         size="small"
-                        // onChange={(e)=>setHeader({...Header,MRNo:e.target.value})}
+                        onChange={(e)=>setHeader({...Header,MRNo:e.target.value})}
                       />
                       </div>
                     </Grid>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                     <div>
                     <NumberFormat  
-                      format="#### #### #### ####"
+                      format="#### ####"
                       mask="_"
                       label="Token #" 
                       variant="outlined"
@@ -597,6 +597,7 @@ function Registration({handleNext,handleBack,Header,setHeader}) {
                    </fieldset>
 
                 </Grid>
+                <button type='submit'>Save</button>
                 </form>
                
             </Grid>
