@@ -3,7 +3,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const dbConnect = require('./config/db.js')
 var cors = require('cors')
-const regisRoute  = require('./routes/api/registration.js')
+const regisRoute  = require('./routes/api/registration.js');
+const welfareRoute  = require('./routes/api/welfare.js')
+
 const dotenv = require('dotenv')
 dotenv.config();
 
@@ -28,3 +30,4 @@ app.listen(PORT, (req,res)=>{
 
 ///Routes
 app.use('/api/register', regisRoute)
+app.use('/api/welfare', welfareRoute)

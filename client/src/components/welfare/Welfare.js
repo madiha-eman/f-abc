@@ -16,6 +16,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import ButtonAppBar from '../RegisHeader/Header'
 import WelTable from './WelTable';
+import axios from 'axios';
+
 
 function StyledCheckbox(props) {
     const classes = useStyles();
@@ -97,7 +99,7 @@ const Welfare = ({handleNext, handleBack,
       Brothers:0,
       Sisters:0,
       NoOFFamilyMembers:2,
-      IsMarried:true,
+      IsMarried:false,
       IsAbleToPay:false,
       IsEarning:false,
       HaveGold:false,
@@ -146,6 +148,15 @@ const Welfare = ({handleNext, handleBack,
         })   
         }
         console.log(Welfare)
+
+        const handleSave = (e) =>{
+          e.preventDefault(e);
+          axios.post('http://localhost:4000/api/welfare/add', Welfare)
+          .then(res => {
+            console.log(res.data)
+ })
+          .catch(err=>console.log(err,'error'));
+        }
     return (
         <div>
             <ButtonAppBar handleNext={handleNext} handleBack={handleBack}
@@ -158,7 +169,7 @@ const Welfare = ({handleNext, handleBack,
            
 
                 </Grid>
-                <form className={classes.root} noValidate autoComplete="on">
+                <form className={classes.root} noValidate autoComplete="on" onSubmit={handleSave}>
                 <Grid container direction='row'>
                     <Grid item lg={3} md={4} sm={12} xs={12}>
                     <div>
@@ -264,7 +275,7 @@ const Welfare = ({handleNext, handleBack,
                       />
                       </div>
                     </Grid>
-                    <Grid item lg={3} md={4} sm={12} xs={12}>
+                    {/* <Grid item lg={3} md={4} sm={12} xs={12}>
                     <div>
                       <TextField
                       //   label="Size"
@@ -276,7 +287,7 @@ const Welfare = ({handleNext, handleBack,
                       size="small"
                       />
                       </div>
-                    </Grid>
+                    </Grid> */}
                    </Grid>
                    </fieldset>
 
@@ -478,6 +489,7 @@ const Welfare = ({handleNext, handleBack,
                     </Grid>
                    </Grid>
                    </fieldset>
+                   <button type='submit'>Save</button>
                     </form>
 
                 </Grid>
